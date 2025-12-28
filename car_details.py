@@ -1,4 +1,7 @@
 import sys
+sys.stdout.reconfigure(encoding='utf-8')
+
+
 
 class Car:
     def __init__(self, brand, model, speed, mileage, price):
