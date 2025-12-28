@@ -15,7 +15,7 @@ class Car:
         print(f"Model   : {self.model}")
         print(f"Speed   : {self.speed} km/h")
         print(f"Mileage : {self.mileage} km/l")
-        print(f"Price   : ₹{self.price}")
+        print(f"Price   : {self.price}")
 
 
 def main():
