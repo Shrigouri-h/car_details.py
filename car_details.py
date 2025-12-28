@@ -9,6 +9,15 @@ class Car:
         self.mileage = float(mileage)
         self.price = float(price)
 
+    def info(self):
+        return {
+            "brand": self.brand,
+            "model": self.model,
+            "speed": self.speed,
+            "mileage": self.mileage,
+            "price": self.price
+        }
+
     def display(self):
         print("\n=== Car Information System ===")
         print(f"Brand   : {self.brand}")
@@ -18,30 +27,30 @@ class Car:
         print(f"Price   : {self.price}")
 
 
-def main():
-    script_name = sys.argv[0]
-
-    # ✅ Default values in code
+def get_car_from_args(args):
+    # default values
     brand = "HONDA"
     model = "CITY"
     speed = 200
     mileage = 10
     price = 5000000
 
-    # ✅ If Jenkins provides parameters, override defaults
+    if len(args) == 5:
+        brand, model, speed, mileage, price = args
+
+    return Car(brand, model, speed, mileage, price)
+
+
+def main():
+    print("Script Name:", sys.argv[0])
+
     if len(sys.argv) == 6:
         print("Using values provided by Jenkins parameters:\n")
-        brand = sys.argv[1]
-        model = sys.argv[2]
-        speed = sys.argv[3]
-        mileage = sys.argv[4]
-        price = sys.argv[5]
+        car = get_car_from_args(sys.argv[1:])
     else:
         print("No Jenkins parameters given - using default values from code:\n")
+        car = get_car_from_args([])
 
-    print("Script Name:", script_name)
-
-    car = Car(brand, model, speed, mileage, price)
     car.display()
 
 
